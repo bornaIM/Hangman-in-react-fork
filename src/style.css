@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+  }
+
+.quote{
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    letter-spacing: 3px
+}
+
+.box {
+    text-align: center;
+    inline-size: 500px;
+    overflow-wrap: break-word;
+}
+
+pre{
+    white-space:pre-line;
+}
+.game{
+    margin-left: 25px;
+}
