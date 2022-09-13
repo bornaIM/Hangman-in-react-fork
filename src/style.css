@@ -12,15 +12,10 @@ body {
     letter-spacing: 3px
 }
 
-.box {
-    text-align: center;
-    inline-size: 500px;
-    overflow-wrap: break-word;
+.game{
+    margin-left: 25px;
 }
 
-pre{
-    white-space:pre-line;
-}
-.game{
+.scoreboard{
     margin-left: 25px;
 }

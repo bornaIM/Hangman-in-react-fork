@@ -1,6 +1,7 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios'
+import "../style"
 
 export default function Scoreboard(){
     let gameData = JSON.parse(localStorage.getItem("gameData"))
@@ -18,10 +19,9 @@ export default function Scoreboard(){
     return(
         <div>
             <h1>Socreboard</h1>
-            <ol>
+            <ol className='scoreboard'>
             {scoreList.length > 1 && scoreListItems}
             </ol>
-            
         </div>
     )
 }

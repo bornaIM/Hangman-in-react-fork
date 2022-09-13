@@ -17,7 +17,6 @@ export default function Game(){
 
     
     if (post && !maskedQuote){
-        console.log("this is called")
         setMaskedQuote(CreateQuoteMask(post[randomIndex].text, ""))
     } else{
 
@@ -27,16 +26,12 @@ export default function Game(){
             })
         }, [])
     }
-    if (post){
-        console.log(post[randomIndex].text)
-    }
     
     function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
     function changeCurrLetter(e){
-        console.log("new letter", e.target.value)
         setCurrLetter(e.target.value)
     }
 
@@ -92,24 +87,23 @@ export default function Game(){
         navigate("/scoreboard")
     } 
     return(
-        <div class="game">
+        <div className="game">
             <h1>Play hangman!</h1>
             <br></br>
             <br></br>
-            <div class="col-lg-4">
-                <div class="input-group mb-3">
-                    <input class="form-control" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
+            <div className="col-lg-4">
+                <div className="input-group mb-3">
+                    <input className="form-control" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
+                    <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
                 </div> 
             </div>
             <p> Used letters: {guessedLetters} </p>
             <p>Errors: {errors}</p>
-            <div className="box">
-                <pre class="quote" name="quote">{maskedQuote}</pre>
-            </div>
+
+            <pre className="quote" name="quote">{maskedQuote}</pre>
             
-            <button type="button" class="btn btn-outline-secondary" onClick={restartGame}>New quote</button>
-            {checkWon(maskedQuote) && <button type="button" class="btn btn-outline-secondary" onClick={navigateToSocreboard}>Go to scoreboard</button>}
+            <button type="button" className="btn btn-outline-secondary" onClick={restartGame}>New quote</button>
+            {checkWon(maskedQuote) && <button type="button" className="btn btn-outline-secondary" onClick={navigateToSocreboard}>Go to scoreboard</button>}
         </div>
     )
 }

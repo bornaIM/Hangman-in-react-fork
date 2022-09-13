@@ -6,7 +6,7 @@ export default function CreateQuoteMask(quote, visableLetters){
             if(IsALetter(char)){
                 mask += "_"
             } else if(char == " "){
-                mask += "       "
+                mask += "  "
             }else{
                 mask += char
             }
