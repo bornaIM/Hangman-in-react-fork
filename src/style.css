@@ -9,7 +9,9 @@ body {
 .quote{
     font-family: Arial, sans-serif;
     font-size: 30px;
-    letter-spacing: 3px
+    letter-spacing: 3px;
+    text-align: center;
+    overflow-wrap: break-word;
 }
 
 .game{
@@ -18,4 +20,9 @@ body {
 
 .scoreboard{
     margin-left: 25px;
+}
+
+.alert{
+    color: red;
+    font-weight: bold;
 }

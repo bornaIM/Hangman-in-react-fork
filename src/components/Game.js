@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import CreateQuoteMask from './CreateQuoteMask'
 import {useNavigate} from 'react-router-dom'
+import IsALetter from './IsALetter'
 const baseUrl = "https://type.fit/api/quotes"
 import "../style"
 
@@ -13,6 +14,7 @@ export default function Game(){
     const [currLetter, setCurrLetter] = React.useState("")
     const [guessedLetters, setGuessedLetters] = React.useState("")
     const [errors, setErrors] = React.useState(0)
+    const [alert, setAlert] = React.useState("")
     const navigate = useNavigate();
 
     
@@ -36,18 +38,28 @@ export default function Game(){
     }
 
     function guessSelectedLetter(){
-        
-        if (!post[randomIndex].text.includes(currLetter)){
-            setErrors((prevValue) => {
-                return prevValue + 1
-            })
-        }
-        setGuessedLetters((prevValue) => {
-            var newGuessedLetters = prevValue + currLetter
+        if (IsALetter(currLetter)){
+            setAlert("")
+            if (!guessedLetters.includes(currLetter)){
+                if (!post[randomIndex].text.includes(currLetter)){
+                    setErrors((prevValue) => {
+                        return prevValue + 1
+                    })
+                }
+                setGuessedLetters((prevValue) => {
+                        var newGuessedLetters = prevValue + currLetter
+                        setCurrLetter("")
+                        setMaskedQuote(CreateQuoteMask(post[randomIndex].text, newGuessedLetters))
+                        return newGuessedLetters
+                })
+            } else{
+                setAlert("Already guessed!")
+                setCurrLetter("")
+            }
+        } else{
+            setAlert("Not a letter!")
             setCurrLetter("")
-            setMaskedQuote(CreateQuoteMask(post[randomIndex].text, newGuessedLetters))
-            return newGuessedLetters
-        })
+        }
     }
 
     function checkWon(currMaskedQuote){
@@ -66,6 +78,7 @@ export default function Game(){
 
     function restartGame(){
         setErrors(0)
+        setAlert("")
         setRandomIndex(randomIntFromInterval(0, 1642))
         setMaskedQuote("")
         setGuessedLetters("")
@@ -91,6 +104,8 @@ export default function Game(){
             <h1>Play hangman!</h1>
             <br></br>
             <br></br>
+            {alert && <p className="alert">{alert}</p>}
+            
             <div className="col-lg-4">
                 <div className="input-group mb-3">
                     <input className="form-control" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
@@ -100,7 +115,7 @@ export default function Game(){
             <p> Used letters: {guessedLetters} </p>
             <p>Errors: {errors}</p>
 
-            <pre className="quote" name="quote">{maskedQuote}</pre>
+            <p className="quote" name="quote">{maskedQuote}</p>
             
             <button type="button" className="btn btn-outline-secondary" onClick={restartGame}>New quote</button>
             {checkWon(maskedQuote) && <button type="button" className="btn btn-outline-secondary" onClick={navigateToSocreboard}>Go to scoreboard</button>}
