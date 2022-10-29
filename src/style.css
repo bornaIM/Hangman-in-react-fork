@@ -22,7 +22,9 @@ body {
     margin-left: 25px;
 }
 
-.alert{
+.alert-text{
+    margin: 0;
+    padding: 0;
     color: red;
     font-weight: bold;
 }

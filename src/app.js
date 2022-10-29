@@ -2,14 +2,12 @@ import React from 'react'
 
 import Login from "./components/Login"
 import Game from "./components/Game"
-import Scoreboard from './components/ScoreBoard'
+import Scoreboard from './components/Scoreboard'
 
-import {Routes, Route, useNavigate} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 
 export default function App(){
-    const navigate = useNavigate();
 
-    
     return(
        <div>
         <Routes>

@@ -40,14 +40,14 @@ export default function Game(){
     function guessSelectedLetter(){
         if (IsALetter(currLetter)){
             setAlert("")
-            if (!guessedLetters.includes(currLetter)){
-                if (!post[randomIndex].text.includes(currLetter)){
+            if (!guessedLetters.includes(currLetter.toUpperCase())){
+                if (!post[randomIndex].text.toUpperCase().includes(currLetter.toUpperCase())){
                     setErrors((prevValue) => {
                         return prevValue + 1
                     })
                 }
                 setGuessedLetters((prevValue) => {
-                        var newGuessedLetters = prevValue + currLetter
+                        var newGuessedLetters = prevValue + currLetter.toUpperCase()
                         setCurrLetter("")
                         setMaskedQuote(CreateQuoteMask(post[randomIndex].text, newGuessedLetters))
                         return newGuessedLetters
@@ -63,7 +63,10 @@ export default function Game(){
     }
 
     function checkWon(currMaskedQuote){
-        if (!currMaskedQuote.includes("_")){
+        console.log(currMaskedQuote)
+        if (!currMaskedQuote.includes("_") && currMaskedQuote){
+            console.log("Did this get posted")
+            postScore()
             return true
         } else{
             return false
@@ -85,8 +88,8 @@ export default function Game(){
         setCurrLetter("")
     }
 
-    const navigateToSocreboard = () => {
-       axios.post("https://my-json-server.typicode.com/stanko-ingemark/hang_the_wise_man_frontend_task/highscores", 
+    function postScore(){
+        axios.post("https://my-json-server.typicode.com/stanko-ingemark/hang_the_wise_man_frontend_task/highscores", 
         {
             "quoteId": randomIndex.toString(),
             "length": post[randomIndex].text.length,
@@ -97,6 +100,9 @@ export default function Game(){
 
         localStorage.setItem("gameData", JSON.stringify({"duration": 1000, "errors": errors, "id": 1, 
             "length": post[randomIndex].text.length, "quoteId": randomIndex, "uniqueCharacters": 55, "userName": localStorage.getItem("name")}))
+    }
+
+    const navigateToSocreboard = () => {
         navigate("/scoreboard")
     } 
     return(
@@ -104,13 +110,13 @@ export default function Game(){
             <h1>Play hangman!</h1>
             <br></br>
             <br></br>
-            {alert && <p className="alert">{alert}</p>}
-            
+            {(alert)? <p className="alert-text">{alert}</p> : <br></br>} 
+
             <div className="col-lg-4">
                 <div className="input-group mb-3">
                     <input className="form-control" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
                     <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
-                </div> 
+                </div>
             </div>
             <p> Used letters: {guessedLetters} </p>
             <p>Errors: {errors}</p>
