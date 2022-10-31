@@ -63,9 +63,7 @@ export default function Game(){
     }
 
     function checkWon(currMaskedQuote){
-        console.log(currMaskedQuote)
         if (!currMaskedQuote.includes("_") && currMaskedQuote){
-            console.log("Did this get posted")
             postScore()
             return true
         } else{
