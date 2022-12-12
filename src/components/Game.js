@@ -117,6 +117,7 @@ export default function Game() {
             "length": post[randomIndex].text.length, "quoteId": randomIndex, "uniqueCharacters": 55, "userName": localStorage.getItem("name")}))
     }
 
+    // TODO: tipfeler
     const navigateToSocreboard = () => {
         navigate("/scoreboard")
     } 

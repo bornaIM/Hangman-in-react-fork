@@ -21,6 +21,7 @@ export default function Scoreboard(){
     const scoreListItems = scoreList.map((element) => <li key={element.id}>{element.userName} {(100/(1 + element.errors)).toFixed(0)}</li>)
     return(
         <div>
+            { /* TODO: tipfeler Socreboard */ }
             <h1>Socreboard</h1>
             <ol className='scoreboard'>
             { /* TODO: indentacija */ }
