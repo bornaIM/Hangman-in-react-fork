@@ -1,6 +1,9 @@
 import React from 'react'
+// TODO: dosta vam je da bootstrap ukljucite u root komponentu, ne treba vam u svakoj komponenti
 import "bootstrap/dist/css/bootstrap.min.css";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+// TODO: dosta vam je da style ukljucite u root komponentu, ne treba vam u svakoj komponenti
 import "../style"
 
 export default function Login(){
@@ -10,6 +13,7 @@ export default function Login(){
         navigate("/game")
     } 
 
+    // TODO: e pazite ovo, gore imate lambda funkciju, a tu obicnu funkciju. Probajte se drzat jednog standarda posvuda, ljepse izgleda
     function inputingName(e){
         setName(e.target.value)
     }
@@ -17,6 +21,8 @@ export default function Login(){
     function saveName(){
         localStorage.setItem("name", name)
     }
+
+    // TODO: funkcije navigateToGame i saveName mozete spojit u jednu jer se uvijek zovu zajedno
 
     return(
         <div className=" d-flex justify-content-center">
