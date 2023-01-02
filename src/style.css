@@ -15,7 +15,12 @@ body {
 }
 
 .game{
-    margin-left: 25px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    margin-left: 20px;
+    row-gap: normal;
+    align-items: baseline;
 }
 
 .scoreboard{
@@ -23,8 +28,30 @@ body {
 }
 
 .alert-text{
-    margin: 0;
-    padding: 0;
     color: red;
     font-weight: bold;
+}
+
+
+.new-quote-btn{
+    width: 200px;
+}
+
+.go-to-scoreboard{
+    width: 200px;
+}
+
+.name-input-box{
+    margin-right: 5px;
+}
+
+.character-input-box{
+    margin-right: 5px;
+}
+
+.input-and-button{
+    flex-direction: row;
+    width: 400px;
+	flex-grow: 0;
+	flex-shrink: 0;
 }

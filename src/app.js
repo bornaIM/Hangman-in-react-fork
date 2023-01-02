@@ -1,5 +1,8 @@
 import React from 'react'
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style"
+
 import Login from "./components/Login"
 import Game from "./components/Game"
 import Scoreboard from './components/Scoreboard'
