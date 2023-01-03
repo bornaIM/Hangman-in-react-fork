@@ -117,20 +117,35 @@ export default function Game() {
     return(
         <div className="game">
             <h1>Play hangman!</h1>
+            <p> Used letters: {guessedLetters} </p>
+            <p>Errors: {errors}</p>
+            <div className="gallows">
+                <div className="horizontal-part"></div>
+                <div className="vertical-part"></div>
+                <div className="base"></div>
+            </div>
+            <div className="hangman">
+                {(errors >= 1) && <div className="rope"></div>}
+                {(errors >= 1) && <div className="head"></div>}
+                {(errors >=2) && <div className="body"></div>}
+                {(errors >= 3) && <div className="first-arm"></div>}
+                {(errors >= 4) && <div className="second-arm"></div>}
+                {(errors >= 5) && <div className="first-leg"></div>}
+                {(errors >= 6) && <div className="second-leg"></div>}
+            </div>
             {(alert) && <p className="alert-text">{alert}</p>} 
             <div className="col-lg-4 input-and-button"> 
                 <div className="input-group mb-3">
                     <input className="form-control character-input-box" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
-                    <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
+                    <button className="btn btn-outline-secondary center-element" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
                 </div>
             </div>
-            <p> Used letters: {guessedLetters} </p>
-            <p>Errors: {errors}</p>
+            
 
             <p className="quote" name="quote">{maskedQuote}</p>
             
-            <button type="button" className="btn btn-outline-secondary new-quote-btn" onClick={restartGame}>New quote</button>
-            {checkWon(maskedQuote) && <button type="button" className="btn btn-outline-secondary go-to-scoreboard" onClick={navigateToScoreboard}>Go to scoreboard</button>}
+            <button type="button" className="btn btn-outline-secondary center-element" onClick={restartGame}>New quote</button>
+            {checkWon(maskedQuote) && <button type="button" className="btn btn-outline-secondary center-element" onClick={navigateToScoreboard}>Go to scoreboard</button>}
         </div>
     )
 }

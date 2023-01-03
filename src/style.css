@@ -11,6 +11,7 @@ body {
     font-size: 30px;
     letter-spacing: 3px;
     text-align: center;
+    align-self: center;
     overflow-wrap: break-word;
 }
 
@@ -18,7 +19,9 @@ body {
     display: flex;
     position: absolute;
     flex-direction: column;
-    margin-left: 20px;
+    flex-wrap: wrap;
+    width:97%;
+    margin-left: 5px;
     row-gap: normal;
     align-items: baseline;
 }
@@ -33,10 +36,6 @@ body {
 }
 
 
-.new-quote-btn{
-    width: 200px;
-}
-
 .go-to-scoreboard{
     width: 200px;
 }
@@ -49,9 +48,99 @@ body {
     margin-right: 5px;
 }
 
+.center-element{
+    align-self: center;
+}
+
 .input-and-button{
     flex-direction: row;
-    width: 400px;
 	flex-grow: 0;
 	flex-shrink: 0;
+    align-self: center;
+}
+
+.gallows{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.vertical-part{
+    align-self: center;
+    height: 200px;
+    width: 10px;
+    background-color: black;
+}
+
+
+.horizontal-part{
+    justify-self: right;
+    align-self: flex-end;
+    height: 10px;
+    width: 80px;
+    background-color: black;
+}
+
+.base{
+    height: 10px;
+    width: 150px;
+    background-color: black;
+}
+
+.hangman{
+    transform: translate(50px, -225px);
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.rope{
+    width: 2px;
+    height: 20px;
+    background-color: black;
+    align-self: center;
+}
+
+.head{
+    width: 30px;
+    height: 30px;
+    background: black;
+    border-radius: 50%
+}
+
+.body{
+    width: 5px;
+    height: 50px;
+    background-color: black;
+    align-self: center;
+}
+
+.first-arm{
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    transform: translate(-10px, -40px) rotate(8deg);
+}
+
+.second-arm{
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    transform: translate(15px, -44px) rotate(-8deg);
+}
+
+.first-leg{
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    transform: translate(-2px, -5px) rotate(-70deg);
+}
+
+.second-leg{
+    width: 25px;
+    height: 4px;
+    background-color: black;
+    transform: translate(10px, -7px) rotate(60deg);
 }
