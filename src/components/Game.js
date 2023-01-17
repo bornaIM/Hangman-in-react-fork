@@ -23,18 +23,25 @@ export default function Game() {
     const navigate = useNavigate();
   
 
+    // TODO: e pazi ovo, daj ovu funkciju unutar useEffecta stavi u posebnu funkciju, i onda ju pozovi u useEfectu
+    // na taj nacin neces morat hakirat dolje s postavljanjem novog valuea u changeQuoteState, samo pozoves opet istu funkciju i to je to
     useEffect(() => {
+        // TODO: razmisli o error handlingu, to se isto moze simulirat, 
         axios.get(baseUrl).then((response) => {
-            let quoteId = Math.floor(Math.random()*response.data.length)
-            setFechedQuote(response.data[quoteId])
-            setFechedQuoteId(quoteId)
+          let quoteId = Math.floor(Math.random() * response.data.length);
+          // TODO: tu mozes spremit i quoteId i quote kao jedan objekt, na taj nacin sve je jednom operaciji
+          // i nemoze se desit da netko zaboravi pozvat jedno a ne drugo. Npr. dolje kad resetiras game pozoves samo setFechedQuote, ne i setFechedQuoteId
+          setFechedQuote(response.data[quoteId]);
+          setFechedQuoteId(quoteId);
         })
     }, [changeQuoteState])
 
+    // TODO: ono sto sam ti gore napisao, mozes mozda i ovaj dio ubacit u tu funkciju za fetchanje, 
     if (!maskedQuote && fechedQuote) {
         setMaskedQuote(createQuoteMask(fechedQuote.text, ""))
     }
     
+    // TODO: ovo se nigdje ne koristi
     function randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
@@ -63,7 +70,11 @@ export default function Game() {
             setAlert("")
         }
 
+        // TODO: nije bas lijepo da zoves neki setState unutar nekog drugog setStatea, nije u duhu Reacta +
+        // mozda moze doc do nekih neocekivanih sideefekata
+        // https://stackoverflow.com/questions/71780110/is-it-okey-to-use-side-effects-in-the-usestate-hook-callback
         setGuessedLetters((prevValue) => {
+            // TODO: zaboravi na varove, const ili let, varovi nisu dobri jer postoje bolje i novije alternative.
             var newGuessedLetters = prevValue + currLetter.toUpperCase()
             setCurrLetter("")
             setMaskedQuote(createQuoteMask(fechedQuote.text, newGuessedLetters))
@@ -97,7 +108,14 @@ export default function Game() {
         setStartTime(Date.now())
     }
 
-    function postScore(){
+    // TODO: opet tu postoji problem, sto ako nema name-a u localStorageu
+    // TODO: isto tako u objektu nemoras propertije pisat s navodnicima ako je jedna rijec, ovo ti je valjano:
+    // {
+    //  quoteId: 'neki value',
+    //  "quote ID": 'neki drugi value
+    // }
+    function postScore() {
+        // TODO: dodaj neki error handling
         axios.post("https://my-json-server.typicode.com/stanko-ingemark/hang_the_wise_man_frontend_task/highscores", 
         {
             "quoteId": fechedQuoteId,
@@ -136,6 +154,18 @@ export default function Game() {
             {(alert) && <p className="alert-text">{alert}</p>} 
             <div className="col-lg-4 input-and-button"> 
                 <div className="input-group mb-3">
+                    {/* predugacka linija, obicno ako je kratka linija ostavi skupa, ali ako je ovak dugacka onda rade podijeli u vise redaka, pazi ovo */}
+                    {/* <input
+                        className="form-control character-input-box"
+                        placeholder="Type a letter"
+                        aria-label="type a letter"
+                        aria-describedby="button-addon2"
+                        value={currLetter}
+                        type="text"
+                        onChange={changeCurrLetter}
+                        onKeyDown={detectEnterKeyPress}
+                        maxLength={1}
+                    ></input> */}
                     <input className="form-control character-input-box" placeholder="Type a letter" aria-label="type a letter" aria-describedby="button-addon2" value={currLetter} type="text" onChange={changeCurrLetter} onKeyDown={detectEnterKeyPress} maxLength={1}></input>
                     <button className="btn btn-outline-secondary center-element" type="button" id="button-addon2" onClick={guessSelectedLetter}>Select letter</button>
                 </div>

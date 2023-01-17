@@ -11,6 +11,7 @@ import {Routes, Route} from 'react-router-dom'
 
 export default function App(){
 
+    // TODO: ovaj vanjski div ti tu ne treba
     return(
        <div>
         <Routes>

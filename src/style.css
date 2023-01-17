@@ -20,7 +20,7 @@ body {
     position: absolute;
     flex-direction: column;
     flex-wrap: wrap;
-    width:97%;
+    width:97%; /* zas imas ovaj dio? */
     margin-left: 5px;
     row-gap: normal;
     align-items: baseline;

@@ -1,0 +1,6 @@
+1.) poredaj importing js i css fileova, grupiraj jedno pored drugog
+2.) CSS challenge, napravi hangmana da se na velikom ekranu pokazuje veci
+3.) gramaticke greske
+4.) provjeri css i vidi sto nije potrebno (ako toga ima)
+5.) na game ekranu kad se pojavi error (onaj alert) cijeli se content pomakne prema dolje, kak bi to rjesio
+6.) Prettier, zakon stvar za formatiranje koda, pogledaj
